@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Malika's JS 🎀</title>
+    <style>
+        
+        body {
+            background-color: #fff0f5;
+            background-image: radial-gradient(#ffc0cb 0.5px, transparent 0.5px);
+            background-size: 20px 20px; 
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #d87093;
+        }
+
+        
+        .coquette-card {
+            background: white;
+            padding: 40px;
+            border-radius: 40px;
+            border: 4px double #ffc0cb; 
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+            text-align: center;
+            max-width: 450px;
+            position: relative;
+        }
+
+        
+        .coquette-card::before {
+            content: "🎀";
+            font-size: 40px;
+            position: absolute;
+            top: -30px;
+            left: calc(50% - 20px);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px #fff;
+        }
+
+        p {
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        button {
+            background-color: #fffafa;
+            color: #d87093;
+            border: 2px solid #ffc0cb;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 #ffc0cb;
+        }
+
+        button:hover {
+            background-color: #ffb6c1;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #d87093;
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 0 0;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="coquette-card">
+        <h1>Malika's JS ✨</h1>
+        <p>Выбери задание:</p>
+
+        <div class="btn-group">
+            <button onclick="runAgeTask()">Проверка возраста </button>
+            <button onclick="runStudentTask()">Список студентов </button>
+            <button onclick="runGradeTask()">Расчёт оценки </button>
+        </div>
+
+        <div class="footer">Результаты дублируются в консоль </div>
+    </div>
+
+    <script>
+    
+    
+    function runAgeTask() {
+        
+        var age = prompt("Введите возраст для проверки (число):");
+        
+        if (age !== null && age !== "") {
+            var status = (Number(age) >= 18) ? "взрослый" : "ребёнок";
+            
+            
+            console.log("🌸 Возраст: " + age + " — Статус: " + status);
+            alert("✨ Это " + status);
+        }
+    }
+
+    
+    function runStudentTask() {
+        var students = [];
+        while (true) {
+            var name = prompt("Имя студента (или нажмите 'Отмена'):");
+            if (!name) break;
+
+            var age = prompt("Сколько лет студенту " + name + "?");
+            var className = prompt("Какой курс у " + name + "?");
+
+            students.push({ name: name, age: age, class: className });
+        }
+
+        console.log("%c--- ИТОГОВЫЙ СПИСОК СТУДЕНТОВ ---", "color: #d87093; font-weight: bold;");
+        if (students.length === 0) {
+            console.log("Список пуст 🎀");
+        } else {
+            students.forEach(function(student, index) {
+                console.log((index + 1) + ". " + student.name + " | Возраст: " + student.age + " | Курс: " + student.class);
+            });
+            alert("Список готов в консоли! 🦢");
+        }
+    }
+
+    // --- 3. РАСЧЁТ ОЦЕНКИ ---
+    function runGradeTask() {
+        var points = prompt("Введите баллы (0-100):");
+        if (points !== null && points !== "") {
+            var grade;
+            var p = Number(points);
+            if (p >= 90) grade = "A";
+            else if (p >= 75) grade = "B";
+            else if (p >= 60) grade = "C";
+            else grade = "F";
+
+            console.log("🦢 Баллы: " + points + " — Оценка: " + grade);
+            alert("Твоя оценка: " + grade + " ✨");
+        }
+    }
+</script>
